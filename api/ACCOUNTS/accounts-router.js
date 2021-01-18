@@ -15,7 +15,6 @@ router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const account = await Accounts.getById(id);
-
     res.status(200).json(account);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -24,6 +23,10 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+    const changes = req.body;
+    const editedAccount = await Accounts.update(id, changes);
+    res.status(200).json(editedAccount);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
