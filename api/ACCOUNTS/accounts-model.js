@@ -22,5 +22,10 @@ module.exports = {
           .where("id", id)
           .first();
       });
+  },
+  delete(id) {
+    return db("accounts")
+      .where("id", id)
+      .delete();
   }
 };

@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
   try {
     const newAccount = req.body;
     const data = await Accounts.create(newAccount);
-    res.status(200).json(data);
+    res.status(201).json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -44,6 +44,9 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+    const deletedAccount = await Accounts.delete(id);
+    res.status(200).json(deletedAccount);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
