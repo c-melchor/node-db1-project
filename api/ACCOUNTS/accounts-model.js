@@ -13,5 +13,14 @@ module.exports = {
     return db("accounts")
       .where("id", id)
       .update(changes);
+  },
+  create(account) {
+    return db("accounts")
+      .insert(account)
+      .then(([id]) => {
+        return db("accounts")
+          .where("id", id)
+          .first();
+      });
   }
 };
