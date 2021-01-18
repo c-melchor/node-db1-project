@@ -13,6 +13,10 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
+    const { id } = req.params;
+    const account = await Accounts.getById(id);
+
+    res.status(200).json(account);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
